@@ -14,15 +14,19 @@ namespace coup{
     class Player{
     public:
         Game& game;
-        std::string name;
-        std::string role;
+        std::string nameP;
+        std::string roleP;
         int id;
-        unsigned int coins;
+        int currentCoins;
         std::string lastAction;
-        Player(Game& game, std::string name):coins(0), game(game),name(std::move(name)),id((int)game.players().size()+1){};
-        void income(){this->coins += 1;};
-        void foreign_aid(){this->coins += 2;};
+        Player(Game& game, std::string name):currentCoins(0), game(game),nameP(std::move(name)),id((int)game.players().size()+1){};
+        void income(){this->currentCoins += 1;};
+        void foreign_aid(){this->currentCoins += 2;};
         virtual void coup(Player& player);
+        int coins()const {return this->currentCoins;};
+        std::string name()const{return this->nameP;};
+        std::string role()const{return this->roleP;};
+
     };
 }
 #endif //EX4_CPP_A_PLAYER_H

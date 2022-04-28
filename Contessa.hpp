@@ -10,6 +10,7 @@ namespace coup{
 
 
     public:
+        Contessa(Game& game, std::string name);
         void block(Player& player);
     };
 }

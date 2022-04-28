@@ -6,12 +6,13 @@
 #define EX4_CPP_A_DUKE_H
 #include "Player.hpp"
 namespace coup{
-    class Duke: private Player{
+    class Duke: public Player{
 
 
     public:
+        Duke(Game& game, std::string name);
         void block(Player& player);
-        void tax(){this->coins += 3;};
+        void tax(){this->currentCoins += 3;};
     };
 }
 #endif //EX4_CPP_A_DUKE_H
