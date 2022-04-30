@@ -11,6 +11,7 @@ namespace coup{
 
 
     public:
+        std::string lastKilled;
         Assassin(Game& game, std::string name);
         void coup(Player &player) override;
     };

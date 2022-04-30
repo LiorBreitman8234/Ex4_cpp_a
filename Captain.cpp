@@ -15,10 +15,18 @@ namespace coup {
 
     void Captain::steal(Player &player) {
         this->game.checkTurn(*this);
-
+        this->currentCoins += 2;
+        player.currentCoins -=2;
+        this->lastAction = "steal";
+        this->game.moveTurn();
     }
 
     Captain::Captain(Game &game, std::string name) : Player(game, std::move(name)) {
+        if(this->game.players().empty())
+        {
+            this->game.currentPlayer = this->nameP;
+        }
         this->roleP = "Captain";
+        game.addPlayer(*this);
     }
 }

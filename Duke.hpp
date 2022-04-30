@@ -12,7 +12,7 @@ namespace coup{
     public:
         Duke(Game& game, std::string name);
         void block(Player& player);
-        void tax(){this->currentCoins += 3;};
+        void tax();
     };
 }
 #endif //EX4_CPP_A_DUKE_H

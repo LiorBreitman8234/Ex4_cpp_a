@@ -15,18 +15,18 @@ namespace coup{
     private:
         std::vector<Player> gamePlayers;
         int countPlayers;
-        short currentPlayer;
         int currentTurn;
     public:
-        std::vector<Player> dyingPlayers;
-        Game():gamePlayers(std::vector<Player>()),countPlayers(0), dyingPlayers(std::vector<Player>()),currentPlayer(1),currentTurn(1){};
-        int getCurrentPlayerID() const{return currentPlayer;};
+        std::string currentPlayer;
+        Game():gamePlayers(std::vector<Player>()),countPlayers(0),currentTurn(1){};
         int getTurn() const{return currentTurn;};
+        void addPlayer(Player player);
         void checkTurn(const Player& player) const;
         std::vector<std::string> players();
         void killPlayer(Player& player);
-        void resuractePlayer(Player& player);
         std::string turn();
+        void moveTurn();
+        Game& operator=(const Game& other);
     };
 }
 #endif //EX4_CPP_A_GAME_H

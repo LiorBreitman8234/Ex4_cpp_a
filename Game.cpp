@@ -2,7 +2,7 @@
 namespace coup{
 
     void Game::checkTurn(const Player &player) const {
-        if(this->currentTurn != player.id)
+        if(this->currentPlayer != player.nameP)
         {
             throw std::logic_error("wrong player turn");
         }
@@ -10,8 +10,14 @@ namespace coup{
     }
 
     void Game::killPlayer(Player &player) {
-        std::move(this->gamePlayers.begin()+player.id-1,this->gamePlayers.begin()+player.id, dyingPlayers);
-
+        for(size_t i =0; i < this->gamePlayers.size();i++)
+        {
+            if(gamePlayers.at(i).nameP == player.nameP)
+            {
+                this->gamePlayers.erase(gamePlayers.begin()+(long)i, gamePlayers.begin()+(long)i+1);
+            }
+        }
+        this->countPlayers--;
     }
 
     std::vector<std::string> Game::players() {
@@ -23,18 +29,52 @@ namespace coup{
         return names;
     }
 
-    void Game::resuractePlayer(Player &player) {
-        std::move(this->dyingPlayers.begin(),this->dyingPlayers.begin()+1, gamePlayers);
-    }
-
     std::string Game::turn() {
+        std::string turn;
         for(auto & p: this->gamePlayers)
         {
-            if(p.id == this->currentPlayer)
+            if(p.nameP == this->currentPlayer)
             {
+                turn = p.nameP;
                 return p.nameP;
             }
         }
+        return turn;
+    }
+
+    Game &Game::operator=(const Game& other) {
+        for(auto & gamePlayer : other.gamePlayers)
+        {
+            this->gamePlayers.push_back(gamePlayer);
+        }
+        this->currentPlayer = other.currentPlayer;
+        this->currentTurn = other.currentTurn;
+        this->countPlayers = other.countPlayers;
+        return *this;
+    }
+
+    void Game::moveTurn() {
+        for(size_t i =0; i < this->gamePlayers.size();i++)
+        {
+            if(this->currentPlayer == this->gamePlayers.at(i).nameP)
+            {
+                if(i == this->gamePlayers.size() -1)
+                {
+                    currentPlayer = this->gamePlayers.at(0).nameP;
+                }
+                else
+                {
+                    currentPlayer = this->gamePlayers.at(i+1).nameP;
+                }
+                return;
+            }
+        }
+
+    }
+
+    void Game::addPlayer(Player player) {
+        this->gamePlayers.push_back(player);
+        this->countPlayers += 1;
     }
 
 }
