@@ -10,7 +10,6 @@ namespace coup{
         this->game.moveTurn();
     }
     void Ambassador::block(Player &player) {
-        this->game.checkTurn(*this);
         if(player.roleP != "Captain")
         {
             throw std::logic_error("can only block captain");

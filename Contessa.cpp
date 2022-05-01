@@ -12,7 +12,6 @@ namespace coup
     }
 
     void Contessa::block(Player &player) {
-        this->game.checkTurn(*this);
         if(player.roleP != "Assassin"){
             throw std::logic_error("cant stop player that is not assassin");
         }

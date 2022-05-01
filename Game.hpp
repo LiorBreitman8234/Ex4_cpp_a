@@ -13,14 +13,14 @@ namespace coup{
     class Player;
     class Game{
     private:
-        std::vector<Player> gamePlayers;
+        std::vector<Player*> gamePlayers;
         int countPlayers;
         int currentTurn;
     public:
         std::string currentPlayer;
-        Game():gamePlayers(std::vector<Player>()),countPlayers(0),currentTurn(1){};
+        Game():gamePlayers(std::vector<Player*>()),countPlayers(0),currentTurn(1){};
         int getTurn() const{return currentTurn;};
-        void addPlayer(Player player);
+        void addPlayer(Player& player);
         void checkTurn(const Player& player) const;
         std::vector<std::string> players();
         void killPlayer(Player& player);
