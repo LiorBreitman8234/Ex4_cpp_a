@@ -16,10 +16,10 @@ namespace coup{
             throw std::logic_error("no action to block");
         }
         player.currentCoins -= 2;
-
     }
 
     void Duke::tax() {
+        this->game.checkTurn(*this);
         this->currentCoins += 3;
         this->game.moveTurn();
         this->lastAction = "tax";

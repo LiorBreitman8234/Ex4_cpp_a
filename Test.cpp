@@ -18,10 +18,8 @@ TEST_CASE("some good, some bad things")
     CHECK_NOTHROW(contessa.income());
     CHECK_NOTHROW(ambassador.foreign_aid());
     CHECK_NOTHROW(duke.block(ambassador));
-    CHECK_NOTHROW(ambassador.income());
-    CHECK_THROWS(duke.block(ambassador));
-    CHECK_THROWS_MESSAGE(duke.block(ambassador),"no action to block");
-    CHECK_NOTHROW(duke.tax());
+    CHECK_NOTHROW(duke.income());
+    CHECK_THROWS(duke.tax());
     CHECK_NOTHROW(contessa.foreign_aid());
     CHECK_THROWS(contessa.block(duke));
     CHECK_THROWS_MESSAGE(contessa.block(duke),"cant stop player that is not assassin");
